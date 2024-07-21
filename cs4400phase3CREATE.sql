@@ -15,7 +15,7 @@ use sams;
 
 create table airline (
   airlineID varchar(50),
-  revenue decimal(12, 0),
+  revenue int,
   primary key (airlineID)
 ) engine = innodb;
 
