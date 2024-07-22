@@ -3,7 +3,6 @@
 -- Spencer Banko, Aadarsh Battula, Steven Li, Ronald Zhang
 
 
--- check the ones w/ id (locid, airplaneid, etc.)
 
 insert into airline values
 ('Delta', 200),
