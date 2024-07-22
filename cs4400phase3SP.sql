@@ -10,8 +10,8 @@ set global SQL_MODE = 'ANSI,TRADITIONAL';
 set names utf8mb4;
 set SQL_SAFE_UPDATES = 0;
 
-set @thisDatabase = 'flight_tracking';
-use flight_tracking;
+-- set @thisDatabase = 'flight_tracking';
+-- use flight_tracking;
 -- -----------------------------------------------------------------------------
 -- stored procedures and views
 -- -----------------------------------------------------------------------------
