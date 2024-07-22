@@ -59,6 +59,7 @@ sp_main: begin
        ip_speed > 0 and 
        ip_airlineID in (select airlineID from airline) and 
        ip_tail_num not in (select tail_num from airplane join airline on airplane.airlineID = airline.airlineID) then
+        insert into location values (locID);
 		insert into airplane values (ip_airlineID, ip_tail_num, ip_seat_capacity, ip_speed, ip_locationID, ip_plane_type, ip_skids, ip_propellers, ip_jet_engines);
 	end if;
 end //
@@ -78,6 +79,7 @@ create procedure add_airport (in ip_airportID char(3), in ip_airport_name varcha
 sp_main: begin
 	if ip_airportID not in (select airportID from airport) and 
        ip_locationID not in (select locID from location) then
+        insert into location values (locID);
 		insert into airport values (ip_airportID, ip_airport_name, ip_city, ip_state, ip_country, ip_locationID);
     end if;
 end //
@@ -99,9 +101,10 @@ create procedure offer_flight (in ip_flightID varchar(50), in ip_routeID varchar
     in ip_support_airline varchar(50), in ip_support_tail varchar(50), in ip_progress integer,
     in ip_next_time time, in ip_cost integer)
 sp_main: begin
-	if concat(ip_support_airline, ip_support_tail) not in (select concat(support_airline, support_tail) from flight) and 
+    if concat(ip_support_airline, ip_support_tail) not in (select concat(support_airline, support_tail) from flight) and 
 	   ip_routeID is not null and
        ip_progress = (select max(sequence) from route_path where ip_routeID = routeID) then
+	   
 	insert into flights values (ip_flightID, ip_routeID, ip_support_airilne, ip_support_tail, ip_progress, 'on_ground', ip_next_time, ip_cost);
     end if;
 end //
